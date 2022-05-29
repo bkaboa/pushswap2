@@ -6,7 +6,7 @@ static bool	check_sort(int32_t *arg, u_int16_t total_num)
 
 	tmp = arg;
 	errno = 3;
-	while (*arg < *(arg + 1) && (arg + 1 - tmp) < total_num)
+	while ((arg + 1 - tmp) < total_num && arg[0] < arg[1])
 		arg++;
 	if ((arg + 1 - tmp) == total_num)
 		return (FALSE);

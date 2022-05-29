@@ -18,8 +18,6 @@
  *
  ******************************	define			***
  */
-#define INT32_MAX			INT_MAX
-#define INT32_MIN			INT_MIN
 #define FALSE				false
 #define TRUE				true
 
@@ -60,6 +58,7 @@ typedef struct	s_stack
 	int					final_index;
 	int					arg;
 	struct s_stack		*next;
+	struct s_stack		*previous;
 }	t_stack;
 
 typedef struct	s_all
@@ -112,13 +111,14 @@ int32_t		*first_sort(int32_t *arg, int16_t last_num);
  ******************************	operations		***
  */
 
-char		*sa(t_all *all);
-char		*pa(t_all *all);
-char		*pb(t_all *all);
-char		*rra(t_all *all);
-char		*rrb(t_all *all);
-char		*ra(t_all *all);
-char		*rb(t_all *all);
+void	ra(t_all *all);
+void	rb(t_all *all);
+void	sa(t_all *all);
+void	sb(t_all *all);
+void	rrb(t_all *all);
+void	rra(t_all *all);
+void	pa(t_all *all);
+void	pb(t_all *all);
 /*
  *
  ******************************	utils_functions	***
@@ -139,7 +139,7 @@ char		**ft_split(string s, char set);
  ******************************	algo			***
  */
 void		sort_3_num(t_all *all);
-void		sort(t_all *all);
+void	sort_under_100(t_all *all);
 
 /*
  *
@@ -150,7 +150,10 @@ bool		check_stk(t_stack *stk);
 u_int16_t	check_pos_first_arg(t_all *all);
 u_int16_t	check_pos_elem_pos(t_all *all, int elem);
 
-
-
+/*
+ *
+ ******************************	algo_utils		***
+ */
+void	print_stk(t_stack *stk);
 
 #endif
