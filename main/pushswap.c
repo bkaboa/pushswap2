@@ -19,8 +19,6 @@ int	main(int argc, char **argv)
 		sort_3_num(&all);
 	else
 		sort_under_100(&all);
-	print_stk(all.stk_a);
-	printf("\n");
 	free_stk(all.stk_a);
 	return (0);
 }

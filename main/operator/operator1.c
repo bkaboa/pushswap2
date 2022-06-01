@@ -41,9 +41,6 @@ void	rra(t_all *all)
 {
 	t_stack	*temp_stk;
 
-	printf("\n\n\n");
-	print_final_stk(all->last_stk_a);
-	printf("\n\n\n");
 	temp_stk = all->last_stk_a;
 	all->last_stk_a = all->last_stk_a->previous;
 	all->last_stk_a->next = NULL;
@@ -51,9 +48,7 @@ void	rra(t_all *all)
 	temp_stk->next = all->stk_a;
 	temp_stk->previous = NULL;
 	all->stk_a = temp_stk;
-	printf("\n\n\n");
-	print_final_stk(all->last_stk_a);
-	printf("\n\n\n");
+
 }
 
 void	rrb(t_all *all)
