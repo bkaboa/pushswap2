@@ -68,7 +68,7 @@ bool	check_arg(t_all *all)
 	i = 0;
 	while (join[i])
 	{
-		if ((join[i] < '0' || join[i] > '9') && join[i] != ' ')
+		if ((join[i] < '0' || join[i] > '9') && join[i] != ' ' && join[i] != '-')
 		{
 			free(join);
 			return (FALSE);

@@ -34,35 +34,14 @@ void	sort_under_100(t_all *all)
 	while (all->total_index > 3)
 	{
 		pos = check_pos_first_arg(all);
-	//	printf("%d\n\n\n\n", pos);
-	//	printf("stk a\n ; ");
-	//	print_stk(all->stk_a);
-	//	printf("\n\n\n\n");
-	//	printf("final stk a\n ; ");
-	//	print_final_stk(all->last_stk_a);
 		if (pos == 1)
 			do_sa(all);
 		else if (((double) all->total_index / pos) <= 2)
-		{
-			dprintf(2, "1");
 			do_rra(all, pos);
-			dprintf(2, "2\n");
-		}
 		else
-		{
-			dprintf(2, "3");
 			do_ra(all, pos);
-			dprintf(2, "4\n");
-		}
 		pb(all);
 		print("pb\n");
-	//	printf("\n\n\n");
-	//	print_stk(all->stk_b);
-	//	printf("\n\n\n");
-	//	print_stk(all->stk_a);
-	//	printf("\n\n\n\n");
-	//	print_final_stk(all->last_stk_a);
-	//	printf("\n\n\n\n");
 	}
 	sort_3_num(all);
 	temp_b = all->stk_b;
