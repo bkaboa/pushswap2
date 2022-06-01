@@ -21,7 +21,7 @@ u_int16_t	check_pos_first_arg(t_all *all)
 	temp_a = all->stk_a;
 	while (temp_a && temp_a->final_index != all->first_index)
 	{
-		pos++;
+		++pos;
 		temp_a = temp_a->next;
 	}
 	all->first_index++;

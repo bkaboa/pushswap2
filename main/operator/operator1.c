@@ -19,10 +19,12 @@ void	pa(t_all *all)
 
 void	pb(t_all *all)
 {
-		t_stack	*temp_a;
+	t_stack	*temp_a;
 
 	temp_a = all->stk_a;
 	all->stk_a = all->stk_a->next;
+	all->stk_a->previous = NULL;
+	temp_a->previous = NULL;
 	all->total_index--;
 	if (!all->stk_b)
 	{
@@ -35,10 +37,13 @@ void	pb(t_all *all)
 	all->stk_b = temp_a;
 }
 
-void	ra(t_all *all)
+void	rra(t_all *all)
 {
 	t_stack	*temp_stk;
 
+	printf("\n\n\n");
+	print_final_stk(all->last_stk_a);
+	printf("\n\n\n");
 	temp_stk = all->last_stk_a;
 	all->last_stk_a = all->last_stk_a->previous;
 	all->last_stk_a->next = NULL;
@@ -46,9 +51,12 @@ void	ra(t_all *all)
 	temp_stk->next = all->stk_a;
 	temp_stk->previous = NULL;
 	all->stk_a = temp_stk;
+	printf("\n\n\n");
+	print_final_stk(all->last_stk_a);
+	printf("\n\n\n");
 }
 
-void	rb(t_all *all)
+void	rrb(t_all *all)
 {
 	t_stack	*temp_stk;
 

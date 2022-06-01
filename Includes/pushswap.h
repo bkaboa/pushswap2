@@ -154,6 +154,7 @@ u_int16_t	check_pos_elem_pos(t_all *all, int elem);
  *
  ******************************	algo_utils		***
  */
+void	print_final_stk(t_stack *stk);
 void	print_stk(t_stack *stk);
 
 #endif
