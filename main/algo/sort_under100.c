@@ -1,25 +1,5 @@
 #include "../../Includes/pushswap.h"
 
-static void	do_ra(t_all *all, u_int16_t pos)
-{
-	while (pos > 0)
-	{
-		ra(all);
-		print("ra\n");
-		pos--;
-	}
-}
-
-static void	do_rra(t_all *all, u_int16_t pos)
-{
-	while (pos < all->total_index)
-	{
-		rra(all);
-		print("rra\n");
-		++pos;
-	}
-}
-
 static void	do_sa(t_all *all)
 {
 	sa(all);

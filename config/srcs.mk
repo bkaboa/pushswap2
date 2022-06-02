@@ -18,5 +18,6 @@ SRCS		=	$(PMAINP)pushswap.c			\
 				$(PPARSING)print_error.c	\
 				$(PSORT)sort3.c				\
 				$(PSORT)sort_under100.c		\
+				$(PSORT)sort_upper500.c		\
 				$(PSORT)algo_utils.c
 

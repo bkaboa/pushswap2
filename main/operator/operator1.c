@@ -26,10 +26,12 @@ void	pb(t_all *all)
 	all->stk_a->previous = NULL;
 	temp_a->previous = NULL;
 	all->total_index--;
+	all->first_index++;
 	if (!all->stk_b)
 	{
 		temp_a->next = NULL;
 		all->stk_b = temp_a;
+		all->last_stk_b = temp_a;
 		return ;
 	}
 	temp_a->next = all->stk_b;

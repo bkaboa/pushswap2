@@ -140,15 +140,16 @@ char		**ft_split(string s, char set);
  */
 void		sort_3_num(t_all *all);
 void	sort_under_100(t_all *all);
+void	big_first_sort(t_all *all);
 
 /*
  *
  ******************************	algo_utils		***
  */
 bool		check_stk(t_stack *stk);
-//u_int16_t	take_pos_first_arg(t_all *all);
 u_int16_t	check_pos_first_arg(t_all *all);
-u_int16_t	check_pos_elem_pos(t_all *all, int elem);
+void	do_ra(t_all *all, u_int16_t pos);
+void	do_rra(t_all *all, u_int16_t pos);
 
 /*
  *

@@ -27,3 +27,23 @@ u_int16_t	check_pos_first_arg(t_all *all)
 	all->first_index++;
 	return (pos);
 }
+
+void	do_ra(t_all *all, u_int16_t pos)
+{
+	while (pos > 0)
+	{
+		ra(all);
+		print("ra\n");
+		pos--;
+	}
+}
+
+void	do_rra(t_all *all, u_int16_t pos)
+{
+	while (pos < all->total_index)
+	{
+		rra(all);
+		print("rra\n");
+		++pos;
+	}
+}
