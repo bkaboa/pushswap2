@@ -1,6 +1,6 @@
 #include "../../Includes/pushswap.h"
 
-void	sa(t_all *all)
+string	sa(t_all *all)
 {
 	t_stack	*temp_stk1;
 	t_stack	*temp_stk2;
@@ -13,9 +13,10 @@ void	sa(t_all *all)
 	temp_stk1->next = all->stk_a;
 	temp_stk1->previous = NULL;
 	all->stk_a = temp_stk1;
+	return ("sa\n");
 }
 
-void	sb(t_all *all)
+string	sb(t_all *all)
 {
 	t_stack	*temp_stk1;
 	t_stack	*temp_stk2;
@@ -28,9 +29,10 @@ void	sb(t_all *all)
 	temp_stk1->next = all->stk_b;
 	temp_stk1->previous = NULL;
 	all->stk_b = temp_stk1;
+	return ("sb\n");
 }
 
-void	rb(t_all *all)
+string	rb(t_all *all)
 {
 	t_stack	*temp_stk;
 
@@ -41,9 +43,10 @@ void	rb(t_all *all)
 	all->last_stk_b->next = all->stk_b;
 	all->last_stk_b = all->stk_b;
 	all->stk_b = temp_stk;
+	return ("rb\n");
 }
 
-void	ra(t_all *all)
+string	ra(t_all *all)
 {
 	t_stack	*temp_stk;
 
@@ -54,4 +57,5 @@ void	ra(t_all *all)
 	all->last_stk_a->next = all->stk_a;
 	all->last_stk_a = all->stk_a;
 	all->stk_a = temp_stk;
+	return ("ra\n");
 }

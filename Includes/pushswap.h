@@ -55,7 +55,7 @@ static const struct {
 
 typedef struct	s_stack
 {
-	int					final_index;
+	u_int16_t			final_index;
 	int					arg;
 	struct s_stack		*next;
 	struct s_stack		*previous;
@@ -70,7 +70,8 @@ typedef struct	s_all
 	char		**argv;
 	char		**num;
 	int32_t		*num2;
-	u_int16_t	total_index;
+	u_int16_t	total_index_a;
+	u_int16_t	total_index_b;
 	u_int16_t	first_index;
 	int32_t		*f_index;
 }	t_all;
@@ -111,14 +112,17 @@ int32_t		*first_sort(int32_t *arg, int16_t last_num);
  ******************************	operations		***
  */
 
-void	ra(t_all *all);
-void	rb(t_all *all);
-void	sa(t_all *all);
-void	sb(t_all *all);
-void	rrb(t_all *all);
-void	rra(t_all *all);
-void	pa(t_all *all);
-void	pb(t_all *all);
+string		ra(t_all *all);
+string		rb(t_all *all);
+string		sa(t_all *all);
+string		sb(t_all *all);
+string		rrb(t_all *all);
+string		rra(t_all *all);
+string		pa(t_all *all);
+string		pb(t_all *all);
+string		rrr(t_all *all);
+string		rr(t_all *all);
+string		ss(t_all *all);
 /*
  *
  ******************************	utils_functions	***
@@ -148,8 +152,16 @@ void	big_first_sort(t_all *all);
  */
 bool		check_stk(t_stack *stk);
 u_int16_t	check_pos_first_arg(t_all *all);
-void	do_ra(t_all *all, u_int16_t pos);
-void	do_rra(t_all *all, u_int16_t pos);
+u_int16_t	get_the_first_index(t_stack *stk);
+void		do_ra(t_all *all, u_int16_t pos);
+void		do_rra(t_all *all, u_int16_t pos);
+
+/*
+ *
+ ******************************	algo_utils		***
+ */
+void		do_rrb(t_all *all, u_int16_t pos);
+void		do_rb(t_all *all, u_int16_t pos);
 
 /*
  *

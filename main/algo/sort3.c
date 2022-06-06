@@ -19,18 +19,9 @@ void	sort_3_num(t_all *all)
 	else
 		i = 1;
 	if (i == 1)
-	{
-		print("ra\n");
-		ra(all);
-	}
+		print(ra(all));
 	else if(i == 2)
-	{
-		rra(all);
-		print("rra\n");
-	}
+		print(rra(all));
 	if (check_stk(all->stk_a) == false)
-	{
-		print("sa\n");
-		sa(all);
-	}
+		print(sa(all));
 }

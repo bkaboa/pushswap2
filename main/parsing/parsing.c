@@ -51,7 +51,7 @@ static bool	check_INT(t_all *all)
 		i++;
 	}
 	free_db_pointer((void **)all->num);
-	return (check_same_arg(all->num2, all->total_index));
+	return (check_same_arg(all->num2, all->total_index_a));
 }
 
 bool	check_arg(t_all *all)

@@ -15,7 +15,7 @@ static void	loop_for_stack(t_all *all)
 
 	temp_stk = all->stk_a;
 	i = 1;
-	while (i < all->total_index)
+	while (i < all->total_index_a)
 	{
 		new = new_stk();
 		new->previous = temp_stk;

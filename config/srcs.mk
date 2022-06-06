@@ -10,14 +10,16 @@ SRCS		=	$(PMAINP)pushswap.c			\
 				$(PMAINP)print_stack.c		\
 				$(PMAINP)init_struct.c		\
 				$(PMAINP)print_stack.c		\
-				$(POPERATOR)operator1.c		\
-				$(POPERATOR)operator2.c		\
-				$(PUTILSP)small_utils.c		\
-				$(PUTILSP)split.c			\
 				$(PPARSING)parsing.c		\
 				$(PPARSING)print_error.c	\
+				$(POPERATOR)operator1.c		\
+				$(POPERATOR)operator2.c		\
+				$(POPERATOR)operator3.c		\
 				$(PSORT)sort3.c				\
 				$(PSORT)sort_under100.c		\
 				$(PSORT)sort_upper500.c		\
-				$(PSORT)algo_utils.c
+				$(PSORT)algo_utils.c		\
+				$(PSORT)algo_utils_2.c		\
+				$(PUTILSP)small_utils.c		\
+				$(PUTILSP)split.c
 

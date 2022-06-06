@@ -6,67 +6,108 @@
 /*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 20:04:38 by czang             #+#    #+#             */
-/*   Updated: 2022/06/02 21:53:56 by czang            ###   ########lyon.fr   */
+/*   Updated: 2022/06/06 19:10:06 by czang            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/pushswap.h"
 
-static int16_t	need_to_push(t_all *all, u_int16_t half_stack)
+static void	need_to_push(t_all *all, u_int16_t half_stack)
 {
 	u_int16_t		i;
-	u_int16_t		j;
 	t_stack			*temp_stk;
 
 	i = 0;
-	j = 0;
 	temp_stk = all->stk_a;
 	while (temp_stk->final_index > half_stack)
 	{
 		temp_stk = temp_stk->next;
 		++i;
 	}
-	temp_stk = all->last_stk_a;
+	do_ra(all, i);
+}
+
+static void	need_to_push_2(t_all *all, u_int16_t half_stack)
+{
+	u_int16_t		i;
+	t_stack			*temp_stk;
+
+	i = 0;
+	temp_stk = all->stk_b;
 	while (temp_stk->final_index > half_stack)
 	{
-		temp_stk = temp_stk->previous;
-		++j;
+		temp_stk = temp_stk->next;
 	}
-	if (i < j)
-		return (i *= -1);
-	return (j);
+	do_rb(all, i);
+
 }
 
-static void	do_ra_or_rra(t_all *all, int16_t index)
+static void	check_operation_stk_b(t_all *all, u_int16_t half_stack)
 {
-	if (index < 0)
-		do_ra(all, index * -1);
-	else
-		do_rra(all, index);
-}
-
-static void	check_operation_stk_b(t_all *all)
-{
-	if (all->stk_b->next == NULL)
+	if (all->stk_b->next == NULL || all->stk_b->next->next == NULL)
 		return ;
-	if (all->stk_b->arg > all->last_stk_b->arg)
-		rrb(all);
+	if (all->stk_b->arg > all->stk_b->next->next->arg && \
+			all->stk_a->final_index > half_stack)
+	{
+		print(rr(all));
+		check_operation_stk_b(all, half_stack);
+	}
+	if (all->stk_b->arg > all->stk_b->next->next->arg)
+	{
+		print(rb(all));
+		check_operation_stk_b(all, half_stack);
+	}
 	else if (all->stk_b->arg > all->stk_b->next->arg)
-		sb(all);
+	{
+		print(sb(all));
+		check_operation_stk_b(all, half_stack);
+	}
+}
+
+static void	check_operation_stk_a(t_all *all)
+{
+	if (all->stk_a->final_index == 1)
+	{
+		print(rra(all));
+		all->total_index_a--;
+		check_operation_stk_a(all);
+	}
+	if (all->stk_a->final_index == all->last_stk_a->final_index + 1)
+	{
+		print(rra(all));
+		all->total_index_a--;
+		check_operation_stk_a(all);
+	}
+	if (all->stk_a->final_index > all->stk_a->next->final_index)
+		print(sa(all));
+	if (all->stk_a->final_index == all->last_stk_a->final_index + 1)
+	{
+		print(rra(all));
+		all->total_index_a--;
+		check_operation_stk_a(all);
+	}
 }
 
 void	big_first_sort(t_all *all)
 {
 	u_int16_t	half_stack;
 
-	half_stack = (all->total_index / 2) - 1;
-	dprintf(2, "%d\n",half_stack);
-	while (all->first_index < half_stack)
-	{
-		do_ra_or_rra(all, need_to_push(all, half_stack));
-		pb(all);
-		printf("pb\n");
-		check_operation_stk_b(all);
-	}
+		half_stack = (all->total_index_a + all->first_index) / 2;
+		while (all->first_index <= half_stack)
+		{
+			need_to_push(all, half_stack);
+			print(pb(all));
+			check_operation_stk_b(all, half_stack);
+		}
+		return ;
+		all->first_index = get_the_first_index(all->stk_b);
+		half_stack = (all->total_index_b + all->first_index) / 2;
+		while (all->first_index <= half_stack)
+		{
+			need_to_push_2(all, half_stack);
+			print(pa(all));
+			check_operation_stk_a(all);
+		}
+		all->first_index = get_the_first_index(all->stk_a);
 	return ;
 }

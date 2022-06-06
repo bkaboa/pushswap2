@@ -1,19 +1,22 @@
 #include "../../Includes/pushswap.h"
 
-void	rrr(t_all *all)
+string	rrr(t_all *all)
 {
 	rra(all);
 	rrb(all);
+	return ("rrr\n");
 }
 
-void	rr(t_all *all)
+string	rr(t_all *all)
 {
 	ra(all);
 	rb(all);
+	return ("rr\n");
 }
 
-void	ss(t_all *all)
+string	ss(t_all *all)
 {
 	sa(all);
 	sb(all);
+	return ("ss\n");
 }
