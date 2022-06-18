@@ -1,34 +1,20 @@
-#include "../Includes/pushswap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   small_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/06 22:48:18 by czang             #+#    #+#             */
+/*   Updated: 2022/06/18 22:05:43 by czang            ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
-//u_int16_t	ft_strlen(const char *str)
-//{
-//	u_int16_t	len;
-//	u_int32_t	x;
-//
-//	len = 0;
-//	if (str || !(*str))
-//		return (0);
-//	
-//	while (1)
-//	{
-//		x = *(unsigned *) str;
-//		if ((x & 0xFF) == 0)
-//			return (len);
-//		if ((x & 0xFF00) == 0)
-//			return (len + 1);
-//		if ((x & 0xFF0000) == 0)
-//			return (len + 2);
-//		if ((x & 0xFF000000) == 0)
-//			return (len + 3);
-//		str += 4;
-//		len += 4;
-//	}
-//	return (0);
-//}
+#include "../Includes/pushswap.h"
 
 u_int16_t	ft_strlen(char *str)
 {
-	string	tmp;
+	t_string	tmp;
 
 	if (!str)
 		return (0);
@@ -38,12 +24,12 @@ u_int16_t	ft_strlen(char *str)
 	return (tmp - str);
 }
 
-string	ft_strjoin(string str1, string str2)
+t_string	ft_strjoin(t_string str1, t_string str2)
 {
-	string		str;
-	u_int16_t	i;
-	string		tmp;
-	
+	t_string		str;
+	u_int16_t		i;
+	t_string		tmp;
+
 	tmp = str1;
 	i = ft_strlen(str1) + ft_strlen(str2);
 	str = malloc(sizeof(char) * i + 2);
@@ -61,32 +47,36 @@ string	ft_strjoin(string str1, string str2)
 	return (str);
 }
 
-int32_t	ft_atoi(const string str)
+bool	ft_atoi(t_string str, int32_t *num2)
 {
 	int64_t		num;
-	u_int16_t	i;
 
 	num = 0;
-	i = 0;
-	if (ft_strlen(str) > 10)
+	if (str[0] == '-')
 	{
-		errno = 2;
-		return (0);
+		*num2 = -1;
+		str++;
 	}
-	if (str[0] == '-')
-		i++;
-	while (str[i])
-		num = num * 10 + str[i++] - '0';
-	if (str[0] == '-')
+	else if (str[0] == '+')
+		str++;
+	if (ft_strlen(str) > 10)
+		return (false);
+	while (*str)
+	{
+		if (*str > '9' || *str < '0')
+			return (false);
+		num = num * 10 + *str - '0';
+		str++;
+	}
+	if (*num2 == -1)
 		num *= -1;
 	if (num > INT32_MAX || num < INT32_MIN)
-		errno = 2;
-	if (errno == 2)
-		return (0);
-	return (num);
+		return (false);
+	*num2 = num;
+	return (true);
 }
 
-void	print(string str)
+void	print(t_string str)
 {
 	write(1, str, ft_strlen(str));
 }

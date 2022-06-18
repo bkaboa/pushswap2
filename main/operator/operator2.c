@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operator2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/06 22:22:51 by czang             #+#    #+#             */
+/*   Updated: 2022/06/09 14:15:23 by czang            ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../Includes/pushswap.h"
 
-string	sa(t_all *all)
+t_string	sa(t_all *all)
 {
 	t_stack	*temp_stk1;
 	t_stack	*temp_stk2;
@@ -16,7 +28,7 @@ string	sa(t_all *all)
 	return ("sa\n");
 }
 
-string	sb(t_all *all)
+t_string	sb(t_all *all)
 {
 	t_stack	*temp_stk1;
 	t_stack	*temp_stk2;
@@ -32,7 +44,7 @@ string	sb(t_all *all)
 	return ("sb\n");
 }
 
-string	rb(t_all *all)
+t_string	rb(t_all *all)
 {
 	t_stack	*temp_stk;
 
@@ -46,7 +58,7 @@ string	rb(t_all *all)
 	return ("rb\n");
 }
 
-string	ra(t_all *all)
+t_string	ra(t_all *all)
 {
 	t_stack	*temp_stk;
 

@@ -6,34 +6,33 @@
 /*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:30:36 by czang             #+#    #+#             */
-/*   Updated: 2022/06/06 16:33:27 by czang            ###   ########lyon.fr   */
+/*   Updated: 2022/06/09 14:13:42 by czang            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/pushswap.h"
 
-string	pa(t_all *all)
+t_string	pa(t_all *all)
 {
 	t_stack	*temp_b;
 
 	if (!all->stk_b)
 		return (NULL);
 	temp_b = all->stk_b;
-	all->total_index_a++;
-	all->total_index_b--;
-	all->first_index++;
 	if (temp_b->next)
 	{
 		all->stk_b = temp_b->next;
 		all->stk_b->previous = NULL;
 	}
+	else
+		all->stk_b = NULL;
 	all->stk_a->previous = temp_b;
 	temp_b->next = all->stk_a;
 	all->stk_a = temp_b;
 	return ("pa\n");
 }
 
-string	pb(t_all *all)
+t_string	pb(t_all *all)
 {
 	t_stack	*temp_a;
 
@@ -41,9 +40,7 @@ string	pb(t_all *all)
 	all->stk_a = all->stk_a->next;
 	all->stk_a->previous = NULL;
 	temp_a->previous = NULL;
-	all->total_index_a--;
-	all->total_index_b++;
-	all->first_index++;
+	all->total_index--;
 	if (!all->stk_b)
 	{
 		temp_a->next = NULL;
@@ -57,7 +54,7 @@ string	pb(t_all *all)
 	return ("pb\n");
 }
 
-string	rra(t_all *all)
+t_string	rra(t_all *all)
 {
 	t_stack	*temp_stk;
 
@@ -71,7 +68,7 @@ string	rra(t_all *all)
 	return ("rra\n");
 }
 
-string	rrb(t_all *all)
+t_string	rrb(t_all *all)
 {
 	t_stack	*temp_stk;
 

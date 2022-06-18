@@ -1,13 +1,22 @@
-#include "../../Includes/pushswap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_error.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/06 20:32:55 by czang             #+#    #+#             */
+/*   Updated: 2022/06/09 14:18:34 by czang            ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
-u_int8_t	perso_errno_msg(void)
+#include "../Includes/pushswap.h"
+
+int	print_error(void)
 {
-	u_int8_t	i;
+	t_string	s1;
 
-	i = 0;
-	while (i <= MAX_ERRNO && i != errno)
-		i++;
-	if (errno == s_tsa[i].code)
-		write(2, s_tsa[i].msg, ft_strlen(s_tsa[i].msg));
-	return (2);
+	s1 = "ERROR\n";
+	write(2, s1, ft_strlen(s1));
+	return (1);
 }

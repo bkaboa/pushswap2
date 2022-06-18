@@ -1,4 +1,3 @@
-
 include 	config/srcs.mk
 
 NAME	=	push_swap
@@ -9,8 +8,8 @@ MEMFLAGS=	-fsanitize=address -g3
 CFLAGS	=	-Wall -Werror -Wextra
 IFLAGS	=	-I $(IPATH)
 OBJS	=	$(addprefix $(OPATH)/, $(SRCS:.c=.o))
-
 INC		=	$(addprefix $(IPATH)/, pushswap.h)
+RMF		=	rm -rf
 
 all:			$(NAME)
 
@@ -28,6 +27,7 @@ memoire:		re
 
 clean:
 	@$(RM) $(OBJS)
+	@$(RMF) $(OPATH)
 
 fclean:			clean
 	@$(RM) $(NAME)

@@ -1,81 +1,80 @@
-#include "../../Includes/pushswap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/06 20:33:23 by czang             #+#    #+#             */
+/*   Updated: 2022/06/18 20:54:51 by czang            ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
-static bool	check_sort(int32_t *arg, u_int16_t total_num)
-{
-	int32_t	*tmp;
+#include "../Includes/pushswap.h"
 
-	tmp = arg;
-	errno = 3;
-	while ((arg + 1 - tmp) < total_num && arg[0] < arg[1])
-		arg++;
-	if ((arg + 1 - tmp) == total_num)
-		return (FALSE);
-	return (TRUE);
-}
-
-static bool	check_same_arg(int32_t *arg, u_int16_t total_num)
+static bool	check_same_arg(t_all *all)
 {
 	int32_t		*tmp1;
 	int32_t		*tmp2;
+	int32_t		*arg;
 
-	errno = 4;
-	tmp1 = arg;
-	while ((arg - tmp1) < total_num)
+	tmp1 = all->num2;
+	arg = tmp1;
+	while ((arg - tmp1) < all->total_index)
 	{
 		tmp2 = arg + 1;
-		while ((tmp2 - tmp1) < total_num)
+		while ((tmp2 - tmp1) < all->total_index)
 		{
 			if (*tmp2 == *arg)
-				return (FALSE);
+				return (free_num_2(&all->num2));
 			tmp2++;
 		}
 		arg++;
 	}
-	return (check_sort(tmp1, total_num));
+	return (true);
 }
 
-static bool	check_INT(t_all *all)
+static bool	check_int(t_all *all)
 {
 	u_int16_t	i;
 
 	i = 0;
+	if (!(all->num))
+		return (false);
 	while (all->num[i])
 		++i;
 	all->num2 = malloc(sizeof(int32_t) * i);
+	if (!(all->num2))
+		return (free_num(&(all->num)));
+	all->total_index = i;
 	i = 0;
 	while (all->num[i])
 	{
-		all->num2[i] = ft_atoi(all->num[i]);
-		if (errno == 2)
-			return (FALSE);
+		if (ft_atoi(all->num[i], &(all->num2[i])) == false)
+		{
+			free_num(&all->num);
+			return (free_num_2(&all->num2));
+		}
 		i++;
 	}
 	free_db_pointer((void **)all->num);
-	return (check_same_arg(all->num2, all->total_index_a));
+	return (check_same_arg(all));
 }
 
 bool	check_arg(t_all *all)
 {
-	string		join;
-	u_int16_t	i;
+	t_string		join;
+	u_int16_t		i;
 
-	errno = 0;
-	i = 1;
+	i = 0;
 	join = NULL;
-	while (all->argv[i])
-		join = ft_strjoin(join, all->argv[i++]);
-	i = 0;
-	i = 0;
-	while (join[i])
+	while (all->argv[++i])
 	{
-		if ((join[i] < '0' || join[i] > '9') && join[i] != ' ' && join[i] != '-')
-		{
-			free(join);
-			return (FALSE);
-		}
-		i++;
+		join = ft_strjoin(join, all->argv[i]);
+		if (!join)
+			return (false);
 	}
 	all->num = ft_split(join, ' ');
 	free(join);
-	return (check_INT(all));
+	return (check_int(all));
 }

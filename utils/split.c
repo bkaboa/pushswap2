@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 14:21:19 by czang             #+#    #+#             */
+/*   Updated: 2022/06/13 21:28:55 by czang            ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Includes/pushswap.h"
 
 static char	*yank_to_set(char **str, char set)
 {
-	string	tmp;
-	string	tmp2;
-	int		i;
+	t_string	tmp;
+	t_string	tmp2;
+	int			i;
 
 	tmp2 = *str;
 	i = 0;
@@ -19,7 +31,7 @@ static char	*yank_to_set(char **str, char set)
 	return (tmp);
 }
 
-static u_int16_t	number_of_words(string str, char set)
+static u_int16_t	number_of_words(t_string str, char set)
 {
 	u_int16_t	i;
 
@@ -40,7 +52,7 @@ static u_int16_t	number_of_words(string str, char set)
 	return (i);
 }
 
-static char	**assign_split(char **split, int num, string str, char set)
+static char	**assign_split(char **split, int num, t_string str, char set)
 {
 	int		i;
 	int		j;
@@ -63,7 +75,7 @@ static char	**assign_split(char **split, int num, string str, char set)
 	return (split);
 }
 
-char	**ft_split(string str, char set)
+char	**ft_split(t_string str, char set)
 {
 	char	**split;
 	int		num;
@@ -71,7 +83,7 @@ char	**ft_split(string str, char set)
 	while (*str == set)
 		str++;
 	num = number_of_words(str, set);
-	split = (char **)malloc(sizeof(char*) * (num + 1));
+	split = (char **) malloc(sizeof(char *) * (num + 1));
 	if (!split)
 		return ((char **) NULL);
 	split[num] = NULL;

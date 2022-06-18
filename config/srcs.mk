@@ -7,9 +7,7 @@ POPERATOR	=	$(PMAINP)operator/
 SRCS		=	$(PMAINP)pushswap.c			\
 				$(PMAINP)first_sort.c		\
 				$(PMAINP)free.c				\
-				$(PMAINP)print_stack.c		\
 				$(PMAINP)init_struct.c		\
-				$(PMAINP)print_stack.c		\
 				$(PPARSING)parsing.c		\
 				$(PPARSING)print_error.c	\
 				$(POPERATOR)operator1.c		\
@@ -17,9 +15,8 @@ SRCS		=	$(PMAINP)pushswap.c			\
 				$(POPERATOR)operator3.c		\
 				$(PSORT)sort3.c				\
 				$(PSORT)sort_under100.c		\
-				$(PSORT)sort_upper500.c		\
+				$(PSORT)radix.c				\
 				$(PSORT)algo_utils.c		\
-				$(PSORT)algo_utils_2.c		\
 				$(PUTILSP)small_utils.c		\
 				$(PUTILSP)split.c
 

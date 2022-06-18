@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_under100.c                                    :+:      :+:    :+:   */
+/*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 22:16:56 by czang             #+#    #+#             */
-/*   Updated: 2022/06/09 19:24:14 by czang            ###   ########lyon.fr   */
+/*   Created: 2022/06/07 16:16:42 by czang             #+#    #+#             */
+/*   Updated: 2022/06/09 15:14:08 by czang            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/pushswap.h"
 
-void	sort_under_100(t_all *all)
+void	radix(t_all *all)
 {
-	u_int16_t	pos;
-	u_int16_t	index;
+	t_stack	*temp_a;
+	t_stack	*temp_a2;
+	int16_t	bit_place;
 
-	index = 1;
-	while (all->total_index > 3)
+	bit_place = 1;
+	temp_a = all->stk_a;
+	temp_a2 = all->last_stk_a;
+	while (check_stk(temp_a) == false)
 	{
-		pos = check_pos_first_arg(all, index);
-		if (pos == 1)
-		{
-			print(sa(all));
-			--pos;
-		}
-		if (pos == 0)
-		{
+		if ((temp_a->final_index & bit_place) == 0)
 			print(pb(all));
-			++index;
-		}
-		else if ((all->total_index / pos) < 2)
-			do_rra(all, pos);
 		else
-			do_ra(all, pos);
+			print(ra(all));
+		if (temp_a->final_index == temp_a2->final_index)
+		{
+			temp_a2 = all->last_stk_a;
+			while (all->stk_b)
+				print(pa(all));
+			bit_place *= 2;
+		}
+		temp_a = all->stk_a;
 	}
-	sort_3_num(all);
 	while (all->stk_b)
 		print(pa(all));
 }
